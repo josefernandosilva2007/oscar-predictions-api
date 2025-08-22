@@ -8,7 +8,7 @@ import java.util.Objects;
 public class NomineeDTO {
     private Long id;
     private String name;
-    private Category category;
+    private Long categoryId;
     private Boolean is_winner;
 
     public NomineeDTO(){
@@ -17,19 +17,19 @@ public class NomineeDTO {
     public NomineeDTO(Nominee entity) {
         id = entity.getId();
         name = entity.getName();
-        category = entity.getCategory();
+        categoryId = entity.getCategory().getId();
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         NomineeDTO that = (NomineeDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(category, that.category) && Objects.equals(is_winner, that.is_winner);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(categoryId, that.categoryId) && Objects.equals(is_winner, that.is_winner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, category, is_winner);
+        return Objects.hash(id, name, categoryId, is_winner);
     }
 
     public Long getId() {
@@ -48,12 +48,12 @@ public class NomineeDTO {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Boolean getIs_winner() {

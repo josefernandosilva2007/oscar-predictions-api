@@ -3,6 +3,8 @@ package com.fears.oscar_predictions_api.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,27 +15,31 @@ public class User {
     private Long id;
     private String username;
 
-    @ManyToOne
-    @JoinColumn(name = "nomination_id")
-    private Nomination nomination;
+    @OneToMany(mappedBy = "user")
+    private List<Nomination> nominations = new ArrayList<>();
 
-    public User(Long id, String username, Nomination nomination) {
-        this.id = id;
-        this.username = username;
-        this.nomination = nomination;
+    public User(){
     }
 
+    public User(String username){
+        this.username = username;
+    }
+
+    public void addNomination(Nomination nomination) {
+        this.nominations.add(nomination);
+        nomination.setUser(this);
+    }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(nomination, user.nomination);
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(nominations, user.nominations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, nomination);
+        return Objects.hash(id, username, nominations);
     }
 
     public Long getId() {
@@ -52,11 +58,11 @@ public class User {
         this.username = username;
     }
 
-    public Nomination getNomination() {
-        return nomination;
+    public List<Nomination> getNominations() {
+        return nominations;
     }
 
-    public void setNomination(Nomination nomination) {
-        this.nomination = nomination;
+    public void setNominations(List<Nomination> nominations) {
+        this.nominations = nominations;
     }
 }
