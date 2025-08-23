@@ -1,6 +1,5 @@
 package com.fears.oscar_predictions_api.dto;
 
-import com.fears.oscar_predictions_api.entity.Category;
 import com.fears.oscar_predictions_api.entity.Nominee;
 
 import java.util.Objects;
@@ -9,7 +8,7 @@ public class NomineeDTO {
     private Long id;
     private String name;
     private Long categoryId;
-    private Boolean is_winner;
+    private Boolean isWinner;
 
     public NomineeDTO(){
     }
@@ -24,12 +23,12 @@ public class NomineeDTO {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         NomineeDTO that = (NomineeDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(categoryId, that.categoryId) && Objects.equals(is_winner, that.is_winner);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(categoryId, that.categoryId) && Objects.equals(isWinner, that.isWinner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, categoryId, is_winner);
+        return Objects.hash(id, name, categoryId, isWinner);
     }
 
     public Long getId() {
@@ -56,11 +55,11 @@ public class NomineeDTO {
         this.categoryId = categoryId;
     }
 
-    public Boolean getIs_winner() {
-        return is_winner;
+    public Boolean getIsWinner() {
+        return isWinner;
     }
 
-    public void setIs_winner(Boolean is_winner) {
-        this.is_winner = is_winner;
+    public void setIsWinner(Boolean isWinner) {
+        this.isWinner = isWinner;
     }
 }
