@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class UserDTO {
-
+    private Long id;
     private String username;
     private List<NominationDTO> nominations = new ArrayList<>();
 
     public UserDTO(User entity) {
+        id = entity.getId();
         username = entity.getUsername();
         nominations = entity.getNominations().stream().map(NominationDTO::new).toList();
     }
@@ -44,5 +45,13 @@ public class UserDTO {
 
     public void setNominations(List<NominationDTO> nominations) {
         this.nominations = nominations;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

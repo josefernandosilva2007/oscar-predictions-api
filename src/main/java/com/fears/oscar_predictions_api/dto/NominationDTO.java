@@ -12,6 +12,8 @@ public class NominationDTO {
     private String categoryName;
 
 
+    public NominationDTO(){}
+
     public NominationDTO(Nomination entity){
         id = entity.getId();
         userId = entity.getUser().getId();
