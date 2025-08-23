@@ -15,7 +15,7 @@ public class User {
     private Long id;
     private String username;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Nomination> nominations = new ArrayList<>();
 
     public User(){
