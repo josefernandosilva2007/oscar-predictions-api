@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -34,9 +35,24 @@ public class NominationService {
         return all.stream().map(NominationDTO::new).toList();
     }
 
+
+    public NominationDTO findById(Long id){
+        Optional<Nomination> byId = nominationRepository.findById(id);
+        return byId.map(NominationDTO::new).orElseThrow(() -> new EntityNotFoundException("Nomination not found"));
+    }
+
+
     public NominationDTO saveNomination(NominationDTO entity){
         Nominee nomineeByID = nomineeRepository.findById(entity.getNomineeId()).orElseThrow(() -> new EntityNotFoundException("Nominee not found"));
         User userById = userRepository.findById(entity.getUserId()).orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        User userWithNominations = userRepository.findByIdWithNomination(userById.getId()).orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        for (Nomination n : userWithNominations.getNominations()){
+            if (n.getNominee().getCategory().getId().equals(nomineeByID.getCategory().getId())){
+                throw new RuntimeException("TESTANDO");
+            }
+        }
 
         Nomination n = new Nomination(entity.getId(), userById, nomineeByID);
         return new NominationDTO(nominationRepository.save(n));

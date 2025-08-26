@@ -2,7 +2,6 @@ package com.fears.oscar_predictions_api.controller;
 
 
 import com.fears.oscar_predictions_api.dto.CategoryDTO;
-import com.fears.oscar_predictions_api.entity.Category;
 import com.fears.oscar_predictions_api.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,5 +21,17 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.findAllCategories());
     }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(categoryService.findCategoryById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<CategoryDTO> saveNewCategory(@RequestBody CategoryDTO entity){
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.saveNewCategory(entity));
+    }
+
+
 
 }

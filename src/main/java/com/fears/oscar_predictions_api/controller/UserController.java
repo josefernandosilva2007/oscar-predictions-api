@@ -27,4 +27,8 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
     }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findByID(id));
+    }
 }

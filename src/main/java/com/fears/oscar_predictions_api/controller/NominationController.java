@@ -22,6 +22,11 @@ public class NominationController {
         return ResponseEntity.status(HttpStatus.OK).body(nominationService.findAll());
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<NominationDTO> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(nominationService.findById(id));
+    }
+
     @PostMapping
     public ResponseEntity<NominationDTO> saveNomination(@RequestBody NominationDTO entity){
         return ResponseEntity.status(HttpStatus.CREATED).body(nominationService.saveNomination(entity));
