@@ -9,6 +9,7 @@ public class NomineeDTO {
     private String name;
     private Long categoryId;
     private Boolean isWinner;
+    private String imgUrl;
 
     public NomineeDTO(){
     }
@@ -17,6 +18,7 @@ public class NomineeDTO {
         id = entity.getId();
         name = entity.getName();
         categoryId = entity.getCategory().getId();
+        imgUrl = entity.getImgUrl();
     }
 
     @Override
@@ -29,6 +31,22 @@ public class NomineeDTO {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, categoryId, isWinner);
+    }
+
+    public Boolean getWinner() {
+        return isWinner;
+    }
+
+    public void setWinner(Boolean winner) {
+        isWinner = winner;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Long getId() {

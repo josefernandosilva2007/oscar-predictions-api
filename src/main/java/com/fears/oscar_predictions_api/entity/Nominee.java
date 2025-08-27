@@ -18,16 +18,18 @@ public class Nominee {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    private String imgUrl;
     private Boolean is_winner;
 
     public Nominee() {
     }
 
-    public Nominee(Long id, String name, Category category, Boolean is_winner) {
+    public Nominee(Long id, String name, Category category, Boolean is_winner, String imgUrl) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.is_winner = is_winner;
+        this.imgUrl = imgUrl;
     }
 
 
@@ -50,6 +52,14 @@ public class Nominee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getName() {

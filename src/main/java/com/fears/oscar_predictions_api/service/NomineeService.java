@@ -29,7 +29,7 @@ public class NomineeService {
         if (byId.isEmpty()) {
             throw new EntityNotFoundException("Category not found");
         }
-        var n = new Nominee(entity.getId(), entity.getName(), byId.get(), entity.getIsWinner());
+        var n = new Nominee(entity.getId(), entity.getName(), byId.get(), entity.getIsWinner(), entity.getImgUrl());
         Nominee save = nomineeRepository.save(n);
         return new NomineeDTO(save);
     }
